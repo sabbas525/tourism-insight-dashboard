@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.HomeController">
+   <children>
+      <Label alignment="CENTER" layoutX="275.0" layoutY="22.0" text="Tourism Insights Dashboard">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="locationsDropdown" layoutX="136.0" layoutY="51.0" onAction="#LoadTouristDataByLocation" prefHeight="25.0" prefWidth="557.0" />
+      <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="721.0" layoutY="49.0" onMouseClicked="#LogOutProcess" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/logout.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/home.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="456.0" onMouseClicked="#switchToEconomicImpact" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/economic.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="225.0" onMouseClicked="#switchToWeather" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/weather.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="340.0" onMouseClicked="#switchToStatistics" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/statistics.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+
+      <AnchorPane layoutX="82.0" layoutY="100.0" prefHeight="580.0" prefWidth="675.0">
+         <children>
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="100.0" prefWidth="635.0" spacing="30">
+               <HBox prefHeight="100.0" prefWidth="308.0" style="-fx-border-color: black; -fx-border-radius: 20px;">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <children>
+                     <ImageView fitHeight="98.0" fitWidth="89.0" pickOnBounds="true">
+                        <image>
+                           <Image url="@../Icons/tourist.png" />
+                        </image>
+                     </ImageView>
+                     <Label fx:id="totalVisitorNumLvl" alignment="CENTER" contentDisplay="CENTER" prefHeight="97.0" prefWidth="216.0" textAlignment="CENTER">
+                        <font>
+                           <Font name="Arial Black" size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
+               <HBox prefHeight="100.0" prefWidth="294.0" style="-fx-border-color: black; -fx-border-radius: 20px;">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <children>
+                     <ImageView fitHeight="97.0" fitWidth="93.0" pickOnBounds="true">
+                        <image>
+                           <Image url="@../Icons/tourist_percentage.png" />
+                        </image>
+                     </ImageView>
+                     <Label fx:id="visitorPercentageLvl" alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="197.0" textAlignment="CENTER">
+                        <font>
+                           <Font name="Arial Black" size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="120.0" prefHeight="17.0" prefWidth="635.0" spacing="150">
+               <Label alignment="CENTER" prefHeight="17.0" prefWidth="259.0" text="Total Visitors" textAlignment="CENTER">
+                  <font>
+                     <Font name="Arial Black" size="12.0" />
+                  </font>
+               </Label>
+               <Label prefHeight="17.0" prefWidth="256.0" text="Percentage" textAlignment="CENTER">
+                  <font>
+                     <Font name="Arial Black" size="12.0" />
+                  </font>
+               </Label>
+            </HBox>
+            <HBox layoutX="22.0" layoutY="137.0" prefHeight="246.0" prefWidth="642.0" spacing="30">
+               <LineChart fx:id="visitorLineChart" prefHeight="249.0" prefWidth="308.0" title="Visitor Trends">
+                  <xAxis>
+                     <CategoryAxis label="Years" />
+                  </xAxis>
+                  <yAxis>
+                     <NumberAxis label="Visitor Numbers" />
+                  </yAxis>
+               </LineChart>
+               <PieChart fx:id="visitorPieChart" prefHeight="254.0" prefWidth="308.0">
+                  <HBox.margin>
+                        <Insets bottom="10" right="10" top="10" />
+                  </HBox.margin>
+               </PieChart>
+            </HBox>
+            <HBox layoutX="22.0" layoutY="391.0" prefHeight="175.0" prefWidth="627.0" spacing="30">
+               <children>
+                  <AnchorPane prefHeight="175.0" prefWidth="627.0">
+                     <children>
+                        <PieChart fx:id="purposePiChart" prefHeight="175.0" prefWidth="143.0" />
+                        <LineChart fx:id="purposeLineChart" layoutX="200.0" prefHeight="175.0" prefWidth="277.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <Label fx:id="purposeLvl" layoutX="473.0" layoutY="2.0" prefHeight="169.0" prefWidth="153.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label ellipsisString="" layoutX="156.0" layoutY="-12.0" text="Trips to Finland from abroad - Purposewise (~Oct 2024)">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+
+      <Line endX="13.0" endY="527.0" layoutX="62.0" layoutY="101.0" startX="13.0" startY="-11.0" />
+      <Label fx:id="placeNamelvl" layoutX="375.0" layoutY="88.0" text="Finland">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="82.0" layoutY="55.0" text="City">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

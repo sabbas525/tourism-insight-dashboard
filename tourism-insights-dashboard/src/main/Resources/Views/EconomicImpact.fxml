@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<?import org.controlsfx.control.CheckComboBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.EconomicImpactController"
+            prefHeight="700.0" prefWidth="800.0">
+    <children>
+        <!-- Page Title -->
+        <Label alignment="CENTER" layoutX="275.0" layoutY="22.0" text="Regional Economic Impact of Tourism">
+            <font>
+                <Font name="Arial Black" size="18.0"/>
+            </font>
+        </Label>
+        <!-- Logout Icon -->
+        <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="721.0" layoutY="49.0" onMouseClicked="#LogOutProcess"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Icons/logout.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="111.0" onMouseClicked="#switchToHomePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/home.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/economic.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="225.0" onMouseClicked="#switchToWeather" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/weather.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="340.0" onMouseClicked="#switchToStatistics" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/statistics.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+
+        <!-- Content Area -->
+        <AnchorPane layoutX="82.0" layoutY="100.0" prefHeight="580.0" prefWidth="675.0">
+            <children>
+                <VBox spacing="10" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="655.0">
+                    <!-- First Row of Dropdowns -->
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label text="Product:"/>
+                        <CheckComboBox fx:id="productChoiceBox" prefWidth="200.0"/>
+                        <Label text="Region:"/>
+                        <CheckComboBox fx:id="regionChoiceBox" prefWidth="200.0"/>
+                    </HBox>
+                    <!-- Second Row of Dropdowns -->
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label text="Year:"/>
+                        <CheckComboBox fx:id="yearChoiceBox" prefWidth="200.0"/>
+                        <Label text="Type:"/>
+                        <CheckComboBox fx:id="typeChoiceBox" prefWidth="200.0"/>
+                        <Button text="Fetch Data" onAction="#fetchData"/>
+                    </HBox>
+                    <!-- Charts in Two-Column Layout -->
+                    <HBox spacing="10" alignment="CENTER">
+                        <LineChart fx:id="lineChart" prefHeight="300.0" prefWidth="320.0"
+                                   title="Economic Impact Over Years">
+                            <xAxis>
+                                <CategoryAxis label="Year"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Value"/>
+                            </yAxis>
+                        </LineChart>
+
+                        <PieChart fx:id="pieChart" prefHeight="300.0" prefWidth="320.0"
+                                  title="Value Distribution by Product"/>
+                    </HBox>
+                    <!-- Table at the Bottom -->
+                    <TableView fx:id="dataTableView" prefHeight="200" prefWidth="655.0"/>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+        <!-- Divider Line -->
+        <Line endX="13.0" endY="527.0" layoutX="62.0" layoutY="101.0" startX="13.0" startY="-11.0"/>
+    </children>
+</AnchorPane>

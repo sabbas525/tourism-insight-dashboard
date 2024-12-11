@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.WeatherController" prefHeight="700.0" prefWidth="800.0">
+    <content>
+        <AnchorPane>
+            <children>
+                <!-- Page Title -->
+                <Label alignment="CENTER" layoutX="275.0" layoutY="22.0" text="Weather and Traffic Data Analysis">
+                    <font>
+                        <Font name="Arial Black" size="18.0"/>
+                    </font>
+                </Label>
+                <!-- Logout Icon -->
+                <ImageView fx:id="logoutImageView" fitHeight="31.0" fitWidth="29.0" layoutX="721.0" layoutY="49.0" onMouseClicked="#LogOutProcess" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Icons/logout.png"/>
+                    </image>
+                </ImageView>
+                <!-- Navigation Icons -->
+                <ImageView fx:id="homeImageView" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="111.0" onMouseClicked="#switchToHomePage" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Icons/home.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fx:id="economicImpactImageView" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="375.0" onMouseClicked="#switchToEconomicImpact" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Icons/economic.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fx:id="weatherImageView" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Icons/weather.png"/>
+                    </image>
+                </ImageView>
+                <ImageView fx:id="statisticsImageView" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="285.0" onMouseClicked="#switchToStatistics" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Icons/statistics.png"/>
+                    </image>
+                </ImageView>
+                <!-- Content Area -->
+                <AnchorPane layoutX="82.0" layoutY="100.0" prefHeight="580.0" prefWidth="675.0">
+                    <children>
+                        <VBox spacing="10" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="655.0">
+                            <!-- Filters -->
+                            <HBox spacing="20" alignment="CENTER">
+                                <VBox spacing="5" alignment="CENTER">
+                                    <Label text="Weather Filters" style="-fx-font-weight: bold;"/>
+                                    <ListView fx:id="weatherStationFilter" prefWidth="150.0" prefHeight="100.0"/>
+                                    <DatePicker fx:id="weatherFromDatePicker"/>
+                                    <DatePicker fx:id="weatherToDatePicker"/>
+                                </VBox>
+                                <VBox spacing="5" alignment="CENTER">
+                                    <Label text="Traffic Filters" style="-fx-font-weight: bold;"/>
+                                    <ListView fx:id="trafficStationFilter" prefWidth="150.0" prefHeight="100.0"/>
+                                    <DatePicker fx:id="trafficFromDatePicker"/>
+                                    <DatePicker fx:id="trafficToDatePicker"/>
+                                </VBox>
+                            </HBox>
+                            <!-- Two-Column Layout -->
+                            <HBox spacing="20" alignment="CENTER">
+                                <VBox spacing="10" alignment="CENTER">
+                                    <Label text="Weather Data" style="-fx-font-weight: bold;"/>
+                                    <PieChart fx:id="weatherPieChart" prefHeight="300.0" prefWidth="320.0"/>
+                                    <TableView fx:id="weatherTable" prefHeight="200" prefWidth="320.0">
+                                        <columns>
+                                            <TableColumn fx:id="stationIdColumn" text="Station ID" prefWidth="100"/>
+                                            <TableColumn fx:id="dateColumn" text="Measurement Time" prefWidth="200"/>
+                                            <TableColumn fx:id="temperatureColumn" text="Temperature (°C)" prefWidth="150"/>
+                                            <TableColumn fx:id="precipitationColumn" text="Precipitation (mm)" prefWidth="150"/>
+                                            <TableColumn fx:id="windSpeedColumn" text="Wind Speed (m/s)" prefWidth="150"/>
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+                                <VBox spacing="10" alignment="CENTER">
+                                    <Label text="Traffic Data" style="-fx-font-weight: bold;"/>
+                                    <PieChart fx:id="trafficPieChart" prefHeight="300.0" prefWidth="320.0"/>
+                                    <TableView fx:id="trafficTable" prefHeight="200" prefWidth="320.0">
+                                        <columns>
+                                            <TableColumn fx:id="trafficStationIdColumn" text="Station ID" prefWidth="100"/>
+                                            <TableColumn fx:id="trafficDateColumn" text="Measurement Time" prefWidth="200"/>
+                                            <TableColumn fx:id="volumeColumn" text="Volume" prefWidth="150"/>
+                                            <TableColumn fx:id="speedColumn" text="Speed" prefWidth="150"/>
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+                            </HBox>
+                            <!-- Line Graphs at the Bottom -->
+                            <VBox spacing="10" alignment="CENTER">
+                                <Label text="Trend Analysis" style="-fx-font-weight: bold;"/>
+                                <LineChart fx:id="combinedLineChart" prefHeight="300.0" prefWidth="655.0">
+                                    <xAxis>
+                                        <CategoryAxis label="Time"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Values"/>
+                                    </yAxis>
+                                </LineChart>
+                            </VBox>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <!-- Divider Line -->
+                <Line endX="13.0" endY="527.0" layoutX="62.0" layoutY="101.0" startX="13.0" startY="-11.0"/>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

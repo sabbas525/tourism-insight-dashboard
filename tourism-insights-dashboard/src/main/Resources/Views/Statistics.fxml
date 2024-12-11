@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.StatisticsController">
+   <children>
+      <!-- Retaining the existing navigation menu and top icons -->
+      <Label alignment="CENTER" layoutX="275.0" layoutY="22.0" text="Tourism Statistics">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="721.0" layoutY="49.0" onMouseClicked="#LogOutProcess" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/logout.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="111.0" onMouseClicked="#switchToHomePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/home.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="227.0" onMouseClicked="#switchToWeather" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/weather.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="472.0" onMouseClicked="#switchToEconomicImpact" pickOnBounds="true" preserveRatio="true">
+           <image>
+               <Image url="@../Icons/economic.png" />
+           </image>
+           <cursor>
+               <Cursor fx:constant="HAND" />
+           </cursor>
+       </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/statistics.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+
+      <!-- Updated Main Content Area for Statistics -->
+      <AnchorPane layoutX="82.0" layoutY="100.0" prefHeight="580.0" prefWidth="675.0">
+         <children>
+            <!-- Filters for date range and location -->
+            <VBox layoutX="20.0" layoutY="0.0" prefWidth="635.0" spacing="15">
+                <HBox spacing="15">
+                     <Label text="Season:">
+                        <HBox.margin>
+                            <Insets left="20" bottom="5" right="5" top="15" />
+                        </HBox.margin>
+                    </Label>
+                    <ComboBox fx:id="seasonFilter" prefWidth="120.0" promptText="Select a Season">
+                    <HBox.margin>
+                        <Insets bottom="10" right="30" top="10" />
+                    </HBox.margin></ComboBox>
+                     <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="">
+                        <HBox.margin>
+                            <Insets bottom="10" right="5" top="15" />
+                        </HBox.margin>
+                    </Label>
+                    <Label text="Trip Type:">
+                        <HBox.margin>
+                            <Insets bottom="5" right="5" top="15" />
+                        </HBox.margin>
+                    </Label>
+                    <ComboBox fx:id="tripTypeFilter" prefWidth="180.0" promptText="Select a Type">
+                    <HBox.margin>
+                        <Insets bottom="10" top="10" />
+                    </HBox.margin>
+                    </ComboBox>
+                    <VBox spacing="10">
+                        <RadioButton fx:id="ageRadioButton" text="Age Group" toggleGroup="$purposeToggleGroup" />
+                        <RadioButton fx:id="genderRadioButton" text="Gender" toggleGroup="$purposeToggleGroup" />
+                     </VBox>
+                </HBox>
+                <!-- Bar Chart and Pie Chart for visitor data -->
+                <HBox spacing="20">
+                    <!-- Bar Chart for Visitor Numbers by Month -->
+                    <BarChart fx:id="tripCountBarChart" prefHeight="250.0" prefWidth="400.0" title="Total Trips by Destination">
+                    <HBox.margin>
+                        <Insets bottom="10" right="10" top="10" />
+                    </HBox.margin>
+                        <xAxis>
+                            <CategoryAxis label="Destination" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Total Trips" />
+                        </yAxis>
+                    </BarChart>
+
+                    <!-- Pie Chart for Visitor Demographics -->
+                    <PieChart fx:id="visitorPieChart" prefHeight="250.0" prefWidth="250.0" title="Visitors by Age Group">
+                        <HBox.margin>
+                            <Insets bottom="10" right="10" top="10" />
+                        </HBox.margin>
+                    </PieChart>
+                </HBox>
+
+               <!-- Year Selection Dropdown -->
+               <HBox spacing="20">
+                  <HBox.margin>
+                     <Insets bottom="10" right="10" top="10" />
+                  </HBox.margin>
+                  <Label style="-fx-font-size: 16px; -fx-font-weight: normal;" text="Trips with overnight stay by Year">
+                  <HBox.margin>
+                            <Insets right="120" />
+                        </HBox.margin>
+                  </Label>
+                  <Label text="Select Year:">
+                     <HBox.margin>
+                            <Insets bottom="5" right="5" top="5" />
+                        </HBox.margin>
+                    </Label>
+                  <ComboBox fx:id="yearFilter" prefWidth="150.0">
+                  </ComboBox>
+               </HBox>
+
+                <!-- Table View for Detailed Statistics -->
+                <TableView fx:id="statisticsTable" prefHeight="200.0" prefWidth="635.0">
+                <HBox.margin>
+                        <Insets bottom="10" right="10" top="20" />
+                    </HBox.margin>
+                    <columns>
+                        <TableColumn fx:id="destinationColumn" prefWidth="200.0" text="Destination" />
+                        <TableColumn fx:id="visitorCountColumn" prefWidth="200.0" text="Trips Count(Thousands)" />
+                        <TableColumn fx:id="durationColumn" prefWidth="235.0" text="Duration of Stay" />
+                    </columns>
+                </TableView>
+            </VBox>
+         </children>
+      </AnchorPane>
+
+      <!-- Retaining the dividing line as in the original layout -->
+      <Line endX="13.0" endY="536.0" layoutX="62.0" layoutY="101.0" startX="13.0" startY="-11.0" />
+   </children>
+</AnchorPane>
